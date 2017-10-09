@@ -20,7 +20,7 @@
 DEVICE     = atmega328p
 CLOCK      = 8000000
 PROGRAMMER = -c avrispmkII -P usb
-OBJECTS    = main.o lcd.o
+OBJECTS    = main.o lcd.o repl.o
 FUSES      = -U lfuse:w:0x62:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 
 

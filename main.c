@@ -7,30 +7,26 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "lcd.h"
+#include "repl.h"
 
-/* ---- ---- ---- for REPL ---- ---- ---- */
-void repl_set(void);
+static inline void initial_setup(void);
 
 /* ==== ==== ==== main loop ==== ==== ==== */
 int main(void)
 {
 	PORTB = 0x00;
 	DDRB  = 0xff;
-	lcd_init();
 
-	repl_set();
-	
+	initial_setup();
+
     for(;;){
 
     }
     return 0;   /* never reached */
 }
 
-/* ==== ==== ==== for REPL ==== ==== ==== */
-
-void repl_set(void)
+static inline void initial_setup(void)
 {
-	lcd_pos(1,1); lcd_str("y:");
-	lcd_pos(2,1); lcd_str("x:");
-	lcd_pos(1,3);
+	lcd_init();
+	repl_set();
 }
