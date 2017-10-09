@@ -29,4 +29,6 @@ static inline void initial_setup(void)
 {
 	lcd_init();
 	repl_set();
+	repl_insert(REPL_Y_COL, "0.0000");
+	repl_insert(REPL_X_COL, "0.0000");
 }

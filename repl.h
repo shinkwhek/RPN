@@ -6,7 +6,11 @@
 #include <util/delay.h>
 #include "lcd.h"
 
+#define REPL_Y_COL 0
+#define REPL_X_COL 1
+
 /* ---- ---- ---- for REPL ---- ---- ---- */
 void repl_set(void);
+void repl_insert(const int, const char*);
 
 #endif
