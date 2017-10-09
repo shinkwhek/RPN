@@ -2,18 +2,29 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "repl.h"
+#include <stdio.h>
 
 /* ==== ==== ==== for REPL ==== ==== ==== */
 
-void repl_set(void)
+void repl_insert(int col_ , float real_)
 {
-	lcd_pos(1,1); lcd_str("y:");
-	lcd_pos(2,1); lcd_str("x:");
+	char s[15];
+
+	if (col_ == REPL_Y_COL) {
+		lcd_pos(1,1);
+		sprintf(s, "Y: %.4f", real_);
+		lcd_str(s);
+	}
+	else if (col_ == REPL_X_COL) {
+		lcd_pos(2,1);
+		sprintf(s, "X: %.4f", real_);
+		lcd_str(s);
+	}
 }
 
-void repl_insert(const int col_ ,const char* str_)
+
+void repl_set(void)
 {
-	if (col_ == REPL_Y_COL)      lcd_pos(1,4);
-	else if (col_ == REPL_X_COL) lcd_pos(2,4);
-	lcd_str(str_);
+	repl_insert(REPL_Y_COL, 0);
+	repl_insert(REPL_X_COL, 0);
 }

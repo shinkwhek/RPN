@@ -10,7 +10,8 @@
 #define REPL_X_COL 1
 
 /* ---- ---- ---- for REPL ---- ---- ---- */
+void repl_insert(int, float);
 void repl_set(void);
-void repl_insert(const int, const char*);
+
 
 #endif
