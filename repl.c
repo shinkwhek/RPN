@@ -6,25 +6,36 @@
 
 /* ==== ==== ==== for REPL ==== ==== ==== */
 
-void repl_insert(int col_ , float real_)
+static inline void print_real(REAL real_)
 {
-	char s[15];
+	char s[14];
+	int hd, tl;
 
-	if (col_ == REPL_Y_COL) {
-		lcd_pos(1,1);
-		sprintf(s, "Y: %.4f", real_);
-		lcd_str(s);
+	if(real_ >= 0){
+		hd = (int)real_;
+		tl = (int)((real_-hd)*10000);
+		sprintf(s," %d.%-d",hd,tl);
+		lcd_data(' ');
 	}
-	else if (col_ == REPL_X_COL) {
-		lcd_pos(2,1);
-		sprintf(s, "X: %.4f", real_);
-		lcd_str(s);
-	}
+	lcd_str(s);
 }
 
-
-void repl_set(void)
+static inline void repl_insert(COL col_ , REAL real_)
 {
-	repl_insert(REPL_Y_COL, 0);
-	repl_insert(REPL_X_COL, 0);
+	if (col_ == Y_COL) {
+		lcd_pos(1,1);
+		lcd_str("Y:");
+	} else
+	if (col_ == X_COL) {
+		lcd_pos(2,1);
+		lcd_str("X:");
+	}
+	print_real(real_);
+}
+
+void repl_set(REAL real_y_, REAL real_x_)
+{
+	lcd_clear();
+	repl_insert(REPL_Y_COL, real_y_);
+	repl_insert(REPL_X_COL, real_x_);
 }

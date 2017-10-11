@@ -19,6 +19,9 @@ int main(void)
 
 	initial_setup();
 
+	_delay_ms(100);
+	repl_set(3.14159265, 1234.456789);
+
     for(;;){
 
     }
@@ -28,5 +31,5 @@ int main(void)
 static inline void initial_setup(void)
 {
 	lcd_init();
-	repl_set();
+	repl_set(0, 0);
 }

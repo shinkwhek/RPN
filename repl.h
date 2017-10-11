@@ -9,9 +9,14 @@
 #define REPL_Y_COL 0
 #define REPL_X_COL 1
 
+typedef double REAL;
+typedef enum {
+	X_COL = 0,
+	Y_COL
+} COL;
+
 /* ---- ---- ---- for REPL ---- ---- ---- */
-void repl_insert(int, float);
-void repl_set(void);
+void repl_set(REAL, REAL);
 
 
 #endif
