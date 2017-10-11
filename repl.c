@@ -2,25 +2,25 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "repl.h"
+#include "types.h"
 #include <stdio.h>
 
 /* ==== ==== ==== for REPL ==== ==== ==== */
 
 static inline void print_real(REAL real_)
 {
-	char s[14];
-	int hd, tl;
+	I8 s[14];
+	U64 hd, tl;
 
 	if(real_ >= 0){
-		hd = (int)real_;
-		tl = (int)((real_-hd)*10000);
-		sprintf(s," %d.%-d",hd,tl);
-		lcd_data(' ');
+		hd = (U64)real_;
+		tl = (U64)((real_-hd)*10000);
+		sprintf(s," %ld.%-ld",hd,tl);
 	}
 	lcd_str(s);
 }
 
-static inline void repl_insert(COL col_ , REAL real_)
+static void repl_insert(COL col_ , REAL real_)
 {
 	if (col_ == Y_COL) {
 		lcd_pos(1,1);
@@ -36,6 +36,6 @@ static inline void repl_insert(COL col_ , REAL real_)
 void repl_set(REAL real_y_, REAL real_x_)
 {
 	lcd_clear();
-	repl_insert(REPL_Y_COL, real_y_);
-	repl_insert(REPL_X_COL, real_x_);
+	repl_insert(Y_COL, real_y_);
+	repl_insert(X_COL, real_x_);
 }

@@ -8,11 +8,12 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "repl.h"
+#include "types.h"
 
 static inline void initial_setup(void);
 
 /* ==== ==== ==== main loop ==== ==== ==== */
-int main(void)
+I32 main(void)
 {
 	PORTB = 0x00;
 	DDRB  = 0xff;

@@ -1,4 +1,5 @@
 #include "lcd.h"
+#include "types.h"
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -24,7 +25,7 @@ void lcd_init (void)
 	lcd_cmd(0x01);
 }
 
-void lcd_out(const char code_, const char rs_)
+void lcd_out(const I8 code_, const I8 rs_)
 {
 	LCD_PORT = (code_ & 0xF0) | (LCD_PORT & 0x0F);
 	if (rs_ == 0) LCD_PORT = LCD_PORT & ~LCD_RS;
@@ -35,21 +36,21 @@ void lcd_out(const char code_, const char rs_)
 	LCD_PORT = LCD_PORT & ~LCD_E;
 }
 
-void lcd_cmd(const char cmd_)
+void lcd_cmd(const I8 cmd_)
 {
 	lcd_out(cmd_, 0);
 	lcd_out(cmd_<<4, 0);
 	_delay_ms(2);
 }
 
-void lcd_data(const char data_)
+void lcd_data(const I8 data_)
 {
 	lcd_out(data_, 1);
 	lcd_out(data_<<4, 1);
 	_delay_ms(0.5);
 }
 
-void lcd_pos(const char line_, const char col_)
+void lcd_pos(const I8 line_, const I8 col_)
 {
 	if (line_ == 1) lcd_cmd(0x80 + col_ - 1);
 	else if (line_ == 2) lcd_cmd(0xC0 + col_ - 1);
@@ -60,9 +61,9 @@ void lcd_clear(void)
 	lcd_cmd(0x01);
 }
 
-void lcd_str(const char* str_)
+void lcd_str(const I8* str_)
 {
-	char i;
+	I8 i;
 	for(i = 0; *(str_ + i) != '\0'; i++)
 		lcd_data(*(str_ + i));
 }
