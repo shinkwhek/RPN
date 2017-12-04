@@ -10,12 +10,16 @@
 static inline void print_real(REAL real_)
 {
   I8 s[14];
-  U64 hd, tl;
 
   if(real_ >= 0){
-    hd = (U64)real_;
-    tl = (U64)((real_-hd)*10000);
-    sprintf(s," %ld.%ld",hd,tl);
+    const U32 hd = (U32)real_;
+    const U32 tl = (U32)((real_ - hd)*10000);
+    sprintf(s," %d.%d",hd,tl);
+  }else{
+    const REAL tmp = - real_;
+    const U32 hd = (U32)tmp;
+    const U32 tl = (U32)((tmp - hd)*10000);
+    sprintf(s,"-%d.%d",hd,tl);
   }
   lcd_str(s);
 }

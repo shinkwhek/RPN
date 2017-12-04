@@ -8,7 +8,7 @@ typedef unsigned int U32;
 typedef long          I64;
 typedef unsigned long U64;
 
-typedef double REAL;
+typedef float REAL;
 
 typedef enum {
 	X_COL = 0,

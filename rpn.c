@@ -90,7 +90,7 @@ void
 cos_acos_stack (SHIFT shift_, STACK** stacks_) {
   STACK* X = (*stacks_);
   if (shift_ == Off)
-    X->real_part = cos(X->real_part);
+    X->real_part = (REAL)cos(X->real_part);
   else
     X->real_part = acos(X->real_part);
 }
@@ -149,5 +149,6 @@ void
 init_stack (STACK** stacks_) {
   new_stack(0, stacks_);
   new_stack(0, stacks_);
+  new_stack(0, stacks_);
+  new_stack(0, stacks_);
 }
-
