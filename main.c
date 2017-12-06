@@ -1,8 +1,3 @@
-/* Name: main.c
- * Author: <insert your name here>
- * Copyright: <insert your copyright message here>
- * License: <insert your license reference here>
- */
 
 #include <stdio.h>
 #include <stdlib.h>
