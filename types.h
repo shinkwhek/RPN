@@ -15,4 +15,6 @@ typedef enum {
 	Y_COL
 } COL;
 
+int stack_count;
+
 #endif

@@ -1,7 +1,7 @@
 #ifndef RPN_H
 #define RPN_H
 
-#include "type.h"
+#include "types.h"
 #include "rpn.h"
 
 typedef enum {
@@ -17,7 +17,7 @@ typedef struct struct_stack {
 } STACK;
 
 void new_stack(const REAL, STACK**);
-void show_stack(STACK**);
+void show_stack(STACK**, SHIFT*);
 void plus_minus_rpn(SHIFT,STACK**);
 void time_divided_rpn(SHIFT,STACK**);
 void sqrt_pow_rpn(SHIFT,STACK**);

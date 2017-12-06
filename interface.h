@@ -1,6 +1,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
-#include"type.h"
+#include"types.h"
 #include"rpn.h"
 
 typedef enum {
@@ -24,5 +24,9 @@ typedef struct {
 
 void do_order (ORDER, SHIFT*, INTERFACE*, STACK**);
 void set_str (const I8*, INTERFACE*);
+
+
+int btm_count;
+int btm_mode; // 1:num, 2:func, 3:shift_func
 
 #endif

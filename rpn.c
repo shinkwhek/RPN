@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "type.h"
+#include "types.h"
 #include "rpn.h"
 #include "repl.h"
 
@@ -11,13 +11,14 @@ new_stack (const REAL data_, STACK** stacks_) {
   new->real_part = data_;
   new->next = *stacks_;
   *stacks_ = new;
+  stack_count++;
 }
 
 void
-show_stack (STACK** stacks_) {
+show_stack (STACK** stacks_, SHIFT* shift_) {
   STACK* Y = (*stacks_)->next;
   STACK* X = (*stacks_);
-  repl_set(Y->real_part, X->real_part);
+  repl_set(Y->real_part, X->real_part, shift_);
 }
 
 static inline void
@@ -28,6 +29,7 @@ plus_stack (STACK** stacks_) {
   Y->real_part = Y->real_part + X->real_part;
   *stacks_ = Y;
   free(X);
+  stack_count--;
 }
 
 static inline void
@@ -38,6 +40,7 @@ minus_stack (STACK** stacks_) {
   Y->real_part = Y->real_part- X->real_part;
   *stacks_ = Y;
   free(X);
+  stack_count--;
 }
 
 static inline void
@@ -48,6 +51,7 @@ time_stack(STACK** stacks_) {
   Y->real_part = Y->real_part * X->real_part;
   *stacks_ = Y;
   free(X);
+  stack_count--;
 }
 
 static inline void
@@ -58,6 +62,7 @@ divided_stack (STACK** stacks_) {
   Y->real_part = Y->real_part / X->real_part;
   *stacks_ = Y;
   free(X);
+  stack_count--;
 }
 
 static inline void

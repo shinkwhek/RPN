@@ -1,5 +1,5 @@
 #include"interface.h"
-#include"type.h"
+#include"types.h"
 #include"rpn.h"
 #include <stdlib.h>
 #include <string.h>
@@ -49,8 +49,9 @@ do_order (ORDER order_, SHIFT* shift_, INTERFACE* interface_, STACK** stacks_) {
       PI_E_stack(*shift_, stacks_);
       break;
     case SHOW:
-      show_stack(stacks_);
+      show_stack(stacks_, shift_);
       break;
     default: break;
   }
 }
+

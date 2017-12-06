@@ -6,9 +6,10 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "types.h"
+#include "rpn.h"
 
 /* ---- ---- ---- for REPL ---- ---- ---- */
-void repl_set(REAL, REAL);
+void repl_set(REAL, REAL, SHIFT*);
 
 
 #endif

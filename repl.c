@@ -2,6 +2,7 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "repl.h"
+#include "rpn.h"
 #include "types.h"
 #include <stdio.h>
 
@@ -37,9 +38,11 @@ static void repl_insert(COL col_ , REAL real_)
   print_real(real_);
 }
 
-void repl_set(REAL real_y_, REAL real_x_)
+void repl_set(REAL real_y_, REAL real_x_, SHIFT* shift_)
 {
   lcd_clear();
   repl_insert(Y_COL, real_y_);
   repl_insert(X_COL, real_x_);
+  if (*shift_ == On)
+    lcd_str("   S");
 }
