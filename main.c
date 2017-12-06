@@ -28,8 +28,7 @@ int main(void)
   PORTC = 0x00;
   lcd_init();
 
-  // adc -----
- // ---------
+  // ---------
   stack_count = 0;
   btm_count = 0;
   btm_mode = 0;
@@ -50,12 +49,6 @@ int main(void)
       btm_count ++;
       while(bit_is_clear(PIND, PIND7));
       _delay_ms(5);
-      /*
-      set_str("1",&current_interface);
-      do_order_macro(NUMBER);
-      do_order_macro(SHOW);
-      show_stack_count();
-      */
     }
     if( bit_is_clear(PIND, PIND6) ) {
       char buf[2];
@@ -65,11 +58,6 @@ int main(void)
       do_order_macro(NUMBER);
       do_order_macro(SHOW);
       show_stack_count();
-      /*
-         do_order_macro(PLUS_MINUS);
-         do_order_macro(SHOW);
-         show_stack_count();
-         */
     }
     if ( bit_is_clear(PIND, PIND5) ) {
       ORDER tmp = (ORDER)((btm_count % 8) + 1);
@@ -77,11 +65,6 @@ int main(void)
       do_order_macro(tmp);
       do_order_macro(SHOW);
       show_stack_count();
-      /*
-         do_order_macro(PLUS_MINUS);
-         do_order_macro(SHOW);
-         show_stack_count();
-         */
     }
 
   }
