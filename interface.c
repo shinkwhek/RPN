@@ -1,8 +1,11 @@
 #include"interface.h"
 #include"types.h"
 #include"rpn.h"
+#include"adc.h"
 #include <stdlib.h>
 #include <string.h>
+#include <avr/io.h>
+#include <util/delay.h>
 
 void
 set_str (const I8* str, INTERFACE* interface_) {
@@ -18,11 +21,21 @@ do_order (ORDER order_, SHIFT* shift_, INTERFACE* interface_, STACK** stacks_) {
         new_stack(r, stacks_);
         break;
       }
+    case ADC_ENUM:
+      {
+        // ADCスタート
+        ADCSRA |= _BV(ADIF);
+        ADCSRA |= _BV(ADSC);
+        // ADC完了待ち
+        loop_until_bit_is_set(ADCSRA, ADIF);
+        // ADC結果取得
+        const REAL r = ADC;
+        new_stack(r, stacks_);
+        break;
+      }
     case SETSHIFT:
-      *shift_ = On;
-      break;
-    case RESETSHIFT:
-      *shift_ = Off;
+      if (*shift_ == Off) *shift_ = On;
+      else                *shift_ = Off;
       break;
     case PLUS_MINUS:
       plus_minus_rpn(*shift_, stacks_);

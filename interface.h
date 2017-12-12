@@ -5,8 +5,8 @@
 
 typedef enum {
   NUMBER = 0,
+  ADC_ENUM,
   SETSHIFT,
-  RESETSHIFT,
   PLUS_MINUS,
   TIME_DIVIDED,
   SIN_ASIN,

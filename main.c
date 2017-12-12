@@ -1,3 +1,6 @@
+#ifndef F_CPU
+#define F_CPU 16000000UL    // 動作周波数に16MHzを指定
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,7 +8,7 @@
 #include <util/delay.h>
 #include "lcd.h"
 #include "repl.h"
-
+#include "adc.h"
 #include "rpn.h"
 #include "interface.h"
 #include "types.h"
@@ -22,6 +25,10 @@ int main(void)
   PORTB = 0x00;
   PORTC = 0x00;
   lcd_init();
+  // ADC init
+  ADMUX =  ADC_REFS_AREFF | ADC_MUX_ADC5;
+  ADCSRA = _BV(ADEN) | ADC_ADPS_128;
+  DIDR0 |= _BV(ADC5D);
 
   // ---------
   stack_count = 0;
