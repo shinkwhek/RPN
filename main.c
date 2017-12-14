@@ -62,7 +62,7 @@ int main(void)
       show_stack_count();
     }
     if ( bit_is_clear(PIND, PIND5) ) {
-      ORDER tmp = (ORDER)((btm_count % 8) + 1);
+      ORDER tmp = (ORDER)((btm_count % 10) + 1);
       btm_count = 0;
       do_order_macro(tmp);
       do_order_macro(SHOW);
